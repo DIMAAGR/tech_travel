@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "484124715949",
+    "project_id": "untold-dev-italo",
+    "storage_bucket": "untold-dev-italo.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484124715949:android:23830574c9e13411c20f24",
+        "android_client_info": {
+          "package_name": "com.dev.italo.untold"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484124715949-dlq9nms6kbshvop7tvim9rad40ee11bt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASb6YOoik38HdPVyZiqRA4PEfM1Bz_gzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "484124715949-dlq9nms6kbshvop7tvim9rad40ee11bt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
