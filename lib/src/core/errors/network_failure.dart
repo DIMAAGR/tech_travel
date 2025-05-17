@@ -1,5 +1,5 @@
 import 'package:tech_travel/src/core/errors/failure.dart';
 
 class NetworkFailure extends Failure {
-  NetworkFailure({message = 'Not have internet connection'});
+  NetworkFailure({super.message = 'Not have internet connection'});
 }

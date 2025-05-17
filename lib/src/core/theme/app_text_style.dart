@@ -17,11 +17,24 @@ abstract class AppTextStyle {
     fontSize: 24,
   );
   static TextStyle button1 = const TextStyle(
-    color: AppColors.purple2,
+    color: AppColors.purple1,
     fontFamily: 'Epilogue',
     fontWeight: FontWeight.w600,
     letterSpacing: 0.02,
     fontSize: 14.67,
+  );
+  static TextStyle button2 = const TextStyle(
+    color: AppColors.purple1,
+    fontFamily: 'FieldWork',
+    fontWeight: FontWeight.w400,
+    fontSize: 13.58,
+  );
+
+  static TextStyle snackbar = const TextStyle(
+    color: Colors.white,
+    fontFamily: 'Epilogue',
+    fontWeight: FontWeight.w700,
+    fontSize: 13.58,
   );
 
   static TextStyle body2 = const TextStyle(

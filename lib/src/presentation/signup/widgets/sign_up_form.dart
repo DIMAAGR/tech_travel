@@ -78,7 +78,7 @@ class _SignUpFormState extends State<SignUpForm> {
         const SizedBox(height: 24),
         UntoldButton(
           title: 'Create Account',
-          onPressed: () {},
+          onPressed: widget.onSignupPressed,
         ),
       ],
     );
