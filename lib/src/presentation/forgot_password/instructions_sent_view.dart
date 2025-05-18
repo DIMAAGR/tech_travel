@@ -3,30 +3,21 @@ import 'package:tech_travel/src/core/app/app_routes.dart';
 import 'package:tech_travel/src/core/theme/app_text_style.dart';
 import 'package:tech_travel/src/presentation/components/untold_button.dart';
 import 'package:tech_travel/src/presentation/components/untold_logo.dart';
-import 'package:tech_travel/src/presentation/components/untold_text_button.dart';
-import 'package:tech_travel/src/presentation/components/untold_text_form_field.dart';
 import 'package:tech_travel/src/presentation/components/untold_view_body.dart';
-import 'package:tech_travel/src/presentation/forgot_password/forgot_password_view_model.dart';
 
-class ForgotPasswordView extends StatefulWidget {
-  final ForgotPasswordViewModel viewModel;
-  const ForgotPasswordView({
-    super.key,
-    required this.viewModel,
-  });
+class InstructionsSentView extends StatefulWidget {
+  const InstructionsSentView({super.key});
 
   @override
-  State<ForgotPasswordView> createState() => _ForgotPasswordViewState();
+  State<InstructionsSentView> createState() => _InstructionsSentViewState();
 }
 
-class _ForgotPasswordViewState extends State<ForgotPasswordView> {
+class _InstructionsSentViewState extends State<InstructionsSentView> {
   bool animate = false;
-  final emailTextController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    emailTextController.addListener(() => widget.viewModel.setEmail(emailTextController.text));
 
     Future.delayed(const Duration(milliseconds: 300), () {
       setState(() {
@@ -53,15 +44,18 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
             child: Stack(
               alignment: Alignment.topCenter,
               children: [
-                Positioned(
-                  top: 0,
+                AnimatedPositioned(
+                  top: animate ? 100 : 40,
+                  duration: duration,
+                  curve: Curves.easeOut,
                   child: Text(
-                    'Forgot Password?',
+                    'The instructions\nwere sent!',
+                    textAlign: TextAlign.center,
                     style: AppTextStyle.h1,
                   ),
                 ),
                 AnimatedPositioned(
-                  top: animate ? 40 : 100,
+                  top: animate ? 176 : 256,
                   duration: duration,
                   curve: Curves.easeOut,
                   child: SizedBox(
@@ -69,23 +63,10 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 32, right: 32, top: 8, bottom: 48),
                       child: Text(
-                        'Enter the email address you used when you joined and we’ll send you instructions to reset your password.',
+                        'If this was a valid email, instructions to reset your password will be sent to you. Please check your email.',
                         textAlign: TextAlign.center,
                         style: AppTextStyle.body2,
                       ),
-                    ),
-                  ),
-                ),
-                AnimatedPositioned(
-                  duration: duration,
-                  top: animate ? 152 : 256,
-                  curve: Curves.easeOut,
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: UntoldTextFormField(
-                      controller: emailTextController,
-                      hintText: 'Email',
-                      useShadow: false,
                     ),
                   ),
                 ),
@@ -99,17 +80,10 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           UntoldButton(
-            title: 'Send reset instructions',
+            title: 'Login',
             onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(context, AppRoutes.emailSend, (_) => false);
+              Navigator.pushNamedAndRemoveUntil(context, AppRoutes.login, (_) => false);
             },
-          ),
-          const SizedBox(height: 8),
-          UntoldTextButton(
-            title: 'Back',
-            height: 40,
-            width: 192,
-            onPressed: () => Navigator.pop(context),
           ),
           const SizedBox(height: 32)
         ],
