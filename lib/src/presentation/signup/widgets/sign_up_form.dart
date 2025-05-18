@@ -65,6 +65,7 @@ class _SignUpFormState extends State<SignUpForm> {
         const SizedBox(height: 16),
         UntoldTextFormField(
           hintText: 'Confirm your Password',
+          controller: widget.confirmPasswordController,
           obscure: isConfirmPassObscure,
           suffix: Padding(
             padding: const EdgeInsets.all(14.0),

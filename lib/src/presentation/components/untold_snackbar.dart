@@ -16,6 +16,7 @@ abstract class UntoldSnackbar {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.transparent,
+          dismissDirection: DismissDirection.up,
           elevation: 0,
           padding: EdgeInsets.zero,
           behavior: SnackBarBehavior.floating,
@@ -48,7 +49,7 @@ abstract class UntoldSnackbar {
                         ),
                         child: Text(
                           message,
-                          style: AppTextStyle.snackbar,
+                          style: AppTextStyle.subtitle1,
                           maxLines: 2,
                         ),
                       ),

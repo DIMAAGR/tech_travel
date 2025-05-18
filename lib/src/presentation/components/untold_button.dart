@@ -5,10 +5,12 @@ import 'package:tech_travel/src/core/theme/app_text_style.dart';
 class UntoldButton extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
+  final double? horizontalPadding;
   const UntoldButton({
     super.key,
     required this.title,
     required this.onPressed,
+    this.horizontalPadding,
   });
 
   @override
@@ -33,7 +35,7 @@ class UntoldButton extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: EdgeInsets.symmetric(horizontal: horizontalPadding ?? 16.0),
           child: Text(
             title,
             style: AppTextStyle.button1,

@@ -49,11 +49,11 @@ class UntoldTextFormField extends StatelessWidget {
             fillColor: AppColors.charcoalBlue,
             contentPadding: const EdgeInsets.symmetric(horizontal: 12),
             focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: AppColors.mediumGrey),
+              borderSide: const BorderSide(color: AppColors.mediumGrey1),
               borderRadius: BorderRadius.circular(9),
             ),
             border: OutlineInputBorder(
-              borderSide: const BorderSide(color: AppColors.mediumGrey),
+              borderSide: const BorderSide(color: AppColors.mediumGrey1),
               borderRadius: BorderRadius.circular(9),
             ),
           ),

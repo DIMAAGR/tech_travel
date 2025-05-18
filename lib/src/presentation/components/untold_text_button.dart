@@ -6,17 +6,34 @@ class UntoldTextButton extends StatelessWidget {
   final String title;
   final EdgeInsets? padding;
   final VoidCallback? onPressed;
-  const UntoldTextButton({super.key, this.style, required this.title, required this.onPressed, this.padding});
+  final double? height;
+  final double? width;
+  const UntoldTextButton({
+    super.key,
+    this.style,
+    required this.title,
+    required this.onPressed,
+    this.padding,
+    this.height,
+    this.width,
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPressed,
+      borderRadius: BorderRadius.circular(9),
       child: Padding(
         padding: padding ?? EdgeInsets.zero,
-        child: Text(
-          title,
-          style: AppTextStyle.button1,
+        child: SizedBox(
+          height: height,
+          width: width,
+          child: Center(
+            child: Text(
+              title,
+              style: AppTextStyle.button1,
+            ),
+          ),
         ),
       ),
     );

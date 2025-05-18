@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tech_travel/src/core/theme/app_colors.dart';
 import 'package:tech_travel/src/core/theme/app_text_style.dart';
 
-class OrLoginWith extends StatelessWidget {
-  const OrLoginWith({super.key});
+class OrSignUpWith extends StatelessWidget {
+  const OrSignUpWith({super.key});
 
   @override
   Widget build(BuildContext context) {

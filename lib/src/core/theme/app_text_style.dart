@@ -30,7 +30,7 @@ abstract class AppTextStyle {
     fontSize: 13.58,
   );
 
-  static TextStyle snackbar = const TextStyle(
+  static TextStyle subtitle1 = const TextStyle(
     color: Colors.white,
     fontFamily: 'Epilogue',
     fontWeight: FontWeight.w700,
@@ -55,5 +55,13 @@ abstract class AppTextStyle {
     fontFamily: 'Outfit',
     fontWeight: FontWeight.w500,
     fontSize: 12,
+  );
+  static TextStyle labelSmall = const TextStyle(
+    fontFamily: 'Epilogue',
+    color: Colors.white,
+    fontWeight: FontWeight.w400,
+    fontSize: 10,
+    height: 14.67 / 10,
+    letterSpacing: 0,
   );
 }
