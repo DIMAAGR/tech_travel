@@ -45,6 +45,7 @@ class UntoldAltButton extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               title,
+              textAlign: TextAlign.center,
               style: AppTextStyle.body2,
             )
           ],

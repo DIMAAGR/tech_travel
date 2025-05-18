@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tech_travel/src/core/app/app_routes.dart';
 import 'package:tech_travel/src/presentation/components/untold_apple_google_buttons.dart';
@@ -41,9 +42,9 @@ class _LoginViewState extends State<LoginView> {
       ),
       body: UntoldViewBody(
         children: [
-          const UntoldPageTitle(
-            title: 'Welcome Back',
-            subtitle: 'Look who is here!',
+          UntoldPageTitle(
+            title: 'welcomeBack'.tr(),
+            subtitle: 'welcomeBackSubtitle'.tr(),
           ),
           LoginForm(
             emailController: emailTextController,

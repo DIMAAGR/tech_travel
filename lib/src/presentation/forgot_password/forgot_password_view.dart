@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tech_travel/src/core/app/app_routes.dart';
 import 'package:tech_travel/src/core/theme/app_text_style.dart';
@@ -56,7 +57,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                 Positioned(
                   top: 0,
                   child: Text(
-                    'Forgot Password?',
+                    'forgotPassword'.tr(),
                     style: AppTextStyle.h1,
                   ),
                 ),
@@ -69,7 +70,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 32, right: 32, top: 8, bottom: 48),
                       child: Text(
-                        'Enter the email address you used when you joined and we’ll send you instructions to reset your password.',
+                        'forgotPasswordDescription'.tr(),
                         textAlign: TextAlign.center,
                         style: AppTextStyle.body2,
                       ),
@@ -84,7 +85,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                     width: MediaQuery.of(context).size.width,
                     child: UntoldTextFormField(
                       controller: emailTextController,
-                      hintText: 'Email',
+                      hintText: 'email'.tr(),
                       useShadow: false,
                     ),
                   ),
@@ -99,14 +100,14 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           UntoldButton(
-            title: 'Send reset instructions',
+            title: 'sendResetInstructions'.tr(),
             onPressed: () {
               Navigator.pushNamedAndRemoveUntil(context, AppRoutes.emailSend, (_) => false);
             },
           ),
           const SizedBox(height: 8),
           UntoldTextButton(
-            title: 'Back',
+            title: 'back'.tr(),
             height: 40,
             width: 192,
             onPressed: () => Navigator.pop(context),

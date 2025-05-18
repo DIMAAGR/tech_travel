@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tech_travel/src/core/theme/app_text_style.dart';
 
@@ -11,7 +12,7 @@ class SignInButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Already have an account? ',
+          '${'alreadyHaveAccount'.tr()} ',
           style: AppTextStyle.body2,
         ),
         GestureDetector(
@@ -19,7 +20,7 @@ class SignInButton extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(top: 4.0),
             child: Text(
-              'Sign In!',
+              'signIn'.tr(),
               style: AppTextStyle.action2,
             ),
           ),

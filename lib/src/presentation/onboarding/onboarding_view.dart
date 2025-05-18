@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:tech_travel/src/core/errors/failure.dart';
@@ -43,7 +44,7 @@ class _OnboardingViewState extends State<OnboardingView> {
           UntoldSnackbar.showMessage(
             context,
             useBorder: true,
-            message: state.error.message,
+            message: state.error.message.tr(),
           );
         }
       },
@@ -74,9 +75,9 @@ class _OnboardingViewState extends State<OnboardingView> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const SizedBox(height: 40),
-          const UntoldPageTitle(
-            title: 'Tell us more!',
-            subtitle: 'Complete your profile',
+          UntoldPageTitle(
+            title: 'tellUsMore'.tr(),
+            subtitle: 'completeYourProfile'.tr(),
           ),
           const SizedBox(height: 64),
           Column(
@@ -100,7 +101,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                                     children: [
                                       const UntoldBackButton(),
                                       Text(
-                                        'Choose Image'.toUpperCase(),
+                                        'chooseImage'.tr().toUpperCase(),
                                         style: AppTextStyle.subtitle1.copyWith(fontSize: 12),
                                       ),
                                       const SizedBox(),
@@ -115,7 +116,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                                         UntoldAltButton(
                                           icon: UntoldIcons.camera,
                                           iconColor: AppColors.purple1,
-                                          title: 'Take a\nphoto',
+                                          title: 'takePhoto'.tr(),
                                           backgroundColor: AppColors.purple3,
                                           borderColor: AppColors.purple1,
                                           onPressed: () {
@@ -125,7 +126,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                                         UntoldAltButton(
                                           icon: UntoldIcons.gallery,
                                           iconColor: AppColors.mediumGrey4,
-                                          title: 'Take a\nphoto',
+                                          title: 'chooseFromGallery'.tr(),
                                           backgroundColor: AppColors.mediumGrey3,
                                           borderColor: AppColors.mediumGrey2,
                                           onPressed: () {
@@ -161,11 +162,11 @@ class _OnboardingViewState extends State<OnboardingView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Choose Image'.toUpperCase(),
+                          'chooseImage'.tr().toUpperCase(),
                           style: AppTextStyle.subtitle1.copyWith(fontSize: 12),
                         ),
                         Text(
-                          'A square .jpg, .gif, or .png image 200x200 or larger',
+                          'imageFormatInfo'.tr(),
                           style: AppTextStyle.labelSmall,
                         ),
                       ],
@@ -175,18 +176,18 @@ class _OnboardingViewState extends State<OnboardingView> {
               ),
               const SizedBox(height: 88),
               UntoldTextFormField(
-                hintText: 'Your name',
+                hintText: 'yourName'.tr(),
                 controller: yourNameController,
                 useShadow: false,
               ),
               const SizedBox(height: 56),
               UntoldButton(
                 horizontalPadding: 40,
-                title: 'Continue',
+                title: 'continue'.tr(),
                 onPressed: () {},
               ),
               UntoldTextButton(
-                title: 'Back',
+                title: 'back'.tr(),
                 height: 40,
                 width: 192,
                 onPressed: () => Navigator.pop(context),

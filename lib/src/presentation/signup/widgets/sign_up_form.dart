@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tech_travel/src/presentation/components/icon/untold_icon.dart';
 import 'package:tech_travel/src/presentation/components/icon/untold_icon_data.dart';
@@ -43,14 +44,14 @@ class _SignUpFormState extends State<SignUpForm> {
     return Column(
       children: [
         UntoldTextFormField(
-          hintText: 'Email',
+          hintText: 'email'.tr(),
           controller: widget.emailController,
           keyboardType: TextInputType.emailAddress,
           useShadow: false,
         ),
         const SizedBox(height: 16),
         UntoldTextFormField(
-          hintText: 'Password',
+          hintText: 'password'.tr(),
           controller: widget.passwordController,
           obscure: isPassObscure,
           suffix: Padding(
@@ -64,7 +65,7 @@ class _SignUpFormState extends State<SignUpForm> {
         ),
         const SizedBox(height: 16),
         UntoldTextFormField(
-          hintText: 'Confirm your Password',
+          hintText: 'confirmPassword'.tr(),
           controller: widget.confirmPasswordController,
           obscure: isConfirmPassObscure,
           suffix: Padding(
@@ -78,7 +79,7 @@ class _SignUpFormState extends State<SignUpForm> {
         ),
         const SizedBox(height: 24),
         UntoldButton(
-          title: 'Create Account',
+          title: 'createAccountButton'.tr(),
           onPressed: widget.onSignupPressed,
         ),
       ],

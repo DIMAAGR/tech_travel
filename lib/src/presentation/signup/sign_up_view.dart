@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:tech_travel/src/core/app/app_routes.dart';
@@ -48,7 +49,7 @@ class _SignUpViewState extends State<SignUpView> {
           UntoldSnackbar.showMessage(
             context,
             useBorder: true,
-            message: state.error.message,
+            message: state.error.message.tr(),
           );
         }
       },
@@ -81,9 +82,9 @@ class _SignUpViewState extends State<SignUpView> {
           const SizedBox(height: 16),
           Column(
             children: [
-              const UntoldPageTitle(
-                title: 'Create an account',
-                subtitle: 'To get started, please complete your account registration.',
+              UntoldPageTitle(
+                title: 'createAccount'.tr(),
+                subtitle: 'createAccountSubtitle'.tr(),
               ),
               const SizedBox(height: 24),
               UntoldAppleGoogleButtons(

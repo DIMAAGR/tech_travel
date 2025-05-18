@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tech_travel/src/core/app/app_routes.dart';
 import 'package:tech_travel/src/core/theme/app_text_style.dart';
@@ -49,7 +50,7 @@ class _InstructionsSentViewState extends State<InstructionsSentView> {
                   duration: duration,
                   curve: Curves.easeOut,
                   child: Text(
-                    'The instructions\nwere sent!',
+                    'instructionsSentTitle'.tr(),
                     textAlign: TextAlign.center,
                     style: AppTextStyle.h1,
                   ),
@@ -63,7 +64,7 @@ class _InstructionsSentViewState extends State<InstructionsSentView> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 32, right: 32, top: 8, bottom: 48),
                       child: Text(
-                        'If this was a valid email, instructions to reset your password will be sent to you. Please check your email.',
+                        'instructionsSentDescription'.tr(),
                         textAlign: TextAlign.center,
                         style: AppTextStyle.body2,
                       ),
@@ -80,7 +81,7 @@ class _InstructionsSentViewState extends State<InstructionsSentView> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           UntoldButton(
-            title: 'Login',
+            title: 'login'.tr(),
             onPressed: () {
               Navigator.pushNamedAndRemoveUntil(context, AppRoutes.login, (_) => false);
             },

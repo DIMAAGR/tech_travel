@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tech_travel/src/core/theme/app_colors.dart';
 import 'package:tech_travel/src/presentation/components/icon/untold_icon.dart';
@@ -40,13 +41,13 @@ class _LoginFormState extends State<LoginForm> {
         UntoldTextFormField(
           controller: widget.emailController,
           useShadow: false,
-          hintText: 'Email',
+          hintText: 'email'.tr(),
         ),
         const SizedBox(height: 16),
         UntoldTextFormField(
           controller: widget.passwordController,
           obscure: true,
-          hintText: 'Password',
+          hintText: 'password'.tr(),
           suffix: Padding(
             padding: const EdgeInsets.all(14.0),
             child: UntoldIcon(
@@ -63,7 +64,7 @@ class _LoginFormState extends State<LoginForm> {
             Padding(
               padding: const EdgeInsets.only(right: 24),
               child: UntoldTextButton(
-                title: 'Forgot password?',
+                title: 'forgotPassword'.tr(),
                 textColor: AppColors.purple1,
                 onPressed: widget.onPasswordPressed,
               ),
@@ -72,7 +73,7 @@ class _LoginFormState extends State<LoginForm> {
         ),
         const SizedBox(height: 24),
         UntoldButton(
-          title: 'Login',
+          title: 'login'.tr(),
           onPressed: widget.onLoginPressed,
         ),
       ],
