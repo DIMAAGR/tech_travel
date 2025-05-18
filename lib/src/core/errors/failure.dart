@@ -1,6 +1,6 @@
 abstract class Failure implements Exception {
   final String message;
-  Failure({this.message = 'An error has occurred'});
+  Failure({this.message = 'genericError'});
 
   @override
   String toString() => message;
