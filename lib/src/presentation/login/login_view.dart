@@ -49,7 +49,9 @@ class _LoginViewState extends State<LoginView> {
             emailController: emailTextController,
             passwordController: passwordTextController,
             onLoginPressed: () {},
-            onPasswordPressed: () {},
+            onPasswordPressed: () {
+              Navigator.pushNamed(context, AppRoutes.forgotPassword);
+            },
           ),
           Column(
             children: [
