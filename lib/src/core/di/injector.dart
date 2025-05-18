@@ -6,6 +6,7 @@ import 'package:tech_travel/src/core/services/permission_services.dart';
 import 'package:tech_travel/src/domain/repositories/login_repository.dart';
 import 'package:tech_travel/src/data/repositories/login_repository_impl.dart';
 import 'package:tech_travel/src/domain/usecases/sign_in_use_case.dart';
+import 'package:tech_travel/src/presentation/login/login_view_model.dart';
 import 'package:tech_travel/src/presentation/onboarding/onboarding_view_model.dart';
 import 'package:tech_travel/src/presentation/signup/sign_up_view_model.dart';
 
@@ -24,15 +25,25 @@ void setupInjector() {
     ),
   );
 
-  // View-Models
+  /// View-Models
+
+  // Signup View
   getIt.registerLazySingleton<SignupViewModel>(
     () => SignupViewModel(),
   );
+
+  // Onboarding View
   getIt.registerLazySingleton<OnboardingViewModel>(
     () => OnboardingViewModel(
       getIt<PermissionService>(),
       getIt<ImagePickerService>(),
     ),
+  );
+
+  // Login View
+
+  getIt.registerLazySingleton<LoginViewModel>(
+    () => LoginViewModel(),
   );
 
   // UseCases

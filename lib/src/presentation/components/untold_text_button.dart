@@ -6,6 +6,7 @@ class UntoldTextButton extends StatelessWidget {
   final String title;
   final EdgeInsets? padding;
   final VoidCallback? onPressed;
+  final Color? textColor;
   final double? height;
   final double? width;
   const UntoldTextButton({
@@ -16,6 +17,7 @@ class UntoldTextButton extends StatelessWidget {
     this.padding,
     this.height,
     this.width,
+    this.textColor,
   });
 
   @override
@@ -31,7 +33,7 @@ class UntoldTextButton extends StatelessWidget {
           child: Center(
             child: Text(
               title,
-              style: AppTextStyle.button1,
+              style: AppTextStyle.button1.copyWith(color: textColor),
             ),
           ),
         ),

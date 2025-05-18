@@ -12,6 +12,7 @@ import 'package:tech_travel/src/presentation/components/untold_alt_button.dart';
 import 'package:tech_travel/src/presentation/components/untold_back_button.dart';
 import 'package:tech_travel/src/presentation/components/untold_button.dart';
 import 'package:tech_travel/src/presentation/components/untold_logo.dart';
+import 'package:tech_travel/src/presentation/components/untold_page_title.dart';
 import 'package:tech_travel/src/presentation/components/untold_snackbar.dart';
 import 'package:tech_travel/src/presentation/components/untold_text_button.dart';
 import 'package:tech_travel/src/presentation/components/untold_text_form_field.dart';
@@ -73,15 +74,9 @@ class _OnboardingViewState extends State<OnboardingView> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const SizedBox(height: 40),
-          Text(
-            'Tell us more!',
-            style: AppTextStyle.h1,
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Complete your profile',
-            textAlign: TextAlign.center,
-            style: AppTextStyle.body2,
+          const UntoldPageTitle(
+            title: 'Tell us more!',
+            subtitle: 'Complete your profile',
           ),
           const SizedBox(height: 64),
           Column(
