@@ -6,10 +6,12 @@ class UntoldButton extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
   final double? horizontalPadding;
+  final bool isTransparent;
   const UntoldButton({
     super.key,
     required this.title,
     required this.onPressed,
+    this.isTransparent = false,
     this.horizontalPadding,
   });
 
@@ -26,7 +28,7 @@ class UntoldButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.purple2,
+          backgroundColor: isTransparent ? AppColors.purple3 : AppColors.purple2,
           shape: RoundedRectangleBorder(
             side: const BorderSide(
               color: AppColors.purple1,
