@@ -7,6 +7,7 @@ import 'package:tech_travel/src/domain/repositories/login_repository.dart';
 import 'package:tech_travel/src/data/repositories/login_repository_impl.dart';
 import 'package:tech_travel/src/domain/usecases/sign_in_use_case.dart';
 import 'package:tech_travel/src/presentation/forgot_password/forgot_password_view_model.dart';
+import 'package:tech_travel/src/presentation/home/home_view_model.dart';
 import 'package:tech_travel/src/presentation/login/login_view_model.dart';
 import 'package:tech_travel/src/presentation/onboarding/onboarding_view_model.dart';
 import 'package:tech_travel/src/presentation/signup/sign_up_view_model.dart';
@@ -69,6 +70,13 @@ void setupInjector() {
   // ===================================================
   getIt.registerLazySingleton<ForgotPasswordViewModel>(
     () => ForgotPasswordViewModel(),
+  );
+
+  // ===================================================
+  // Home View
+  // ===================================================
+  getIt.registerLazySingleton<HomeViewModel>(
+    () => HomeViewModel(),
   );
 
   ///

@@ -49,7 +49,9 @@ class _LoginViewState extends State<LoginView> {
           LoginForm(
             emailController: emailTextController,
             passwordController: passwordTextController,
-            onLoginPressed: () {},
+            onLoginPressed: () {
+              Navigator.pushNamedAndRemoveUntil(context, AppRoutes.home, (_) => false);
+            },
             onPasswordPressed: () {
               Navigator.pushNamed(context, AppRoutes.forgotPassword);
             },

@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>484124715949-v6p00tr13rfisee4rnc7n6qv9kkgj5km.apps.googleusercontent.com</string>
+	<string>787952710825-cbfuaot1jgmg3msq0amdto8l4suj452v.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.484124715949-v6p00tr13rfisee4rnc7n6qv9kkgj5km</string>
+	<string>com.googleusercontent.apps.787952710825-cbfuaot1jgmg3msq0amdto8l4suj452v</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAfKZ-UnjiNrpA7E-5GatPzhanpsQbmQBs</string>
+	<string>AIzaSyDnRTXKUwPXCDSNbIEmu_9Uwkbb3SVuOcM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>484124715949</string>
+	<string>787952710825</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.techTravel</string>
+	<string>com.app.untold</string>
 	<key>PROJECT_ID</key>
-	<string>untold-dev-italo</string>
+	<string>untold-app-prod</string>
 	<key>STORAGE_BUCKET</key>
-	<string>untold-dev-italo.firebasestorage.app</string>
+	<string>untold-app-prod.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:484124715949:ios:00ed4a541fa052fbc20f24</string>
+	<string>1:787952710825:ios:9b8e987e6e4cabeb8b25b8</string>
 </dict>
 </plist>

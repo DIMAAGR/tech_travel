@@ -3,15 +3,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:tech_travel/src/core/app/app.dart';
 import 'package:tech_travel/src/core/di/injector.dart';
-import 'package:tech_travel/firebase_options.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await EasyLocalization.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp();
 
   setupInjector();
   runApp(
