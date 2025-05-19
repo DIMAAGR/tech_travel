@@ -4,16 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:tech_travel/src/core/app/app.dart';
 import 'package:tech_travel/src/core/di/injector.dart';
-import 'package:tech_travel/firebase_options.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
+  await Firebase.initializeApp();
   await dotenv.load(fileName: ".env");
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 
   setupInjector();
   runApp(

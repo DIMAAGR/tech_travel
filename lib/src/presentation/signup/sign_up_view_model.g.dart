@@ -33,6 +33,14 @@ mixin _$SignupViewModel on SignUpViewModelBase, Store {
     return _$signupWithEmailAsyncAction.run(() => super.signupWithEmail());
   }
 
+  late final _$signupWithGoogleAsyncAction =
+      AsyncAction('SignUpViewModelBase.signupWithGoogle', context: context);
+
+  @override
+  Future<void> signupWithGoogle() {
+    return _$signupWithGoogleAsyncAction.run(() => super.signupWithGoogle());
+  }
+
   @override
   String toString() {
     return '''

@@ -88,8 +88,12 @@ class _SignUpViewState extends State<SignUpView> {
               ),
               const SizedBox(height: 24),
               UntoldAppleGoogleButtons(
-                onApplePressed: () {},
-                onGooglePressed: () {},
+                onApplePressed: () {
+                  widget.viewModel.signupWithApple();
+                },
+                onGooglePressed: () {
+                  widget.viewModel.signupWithGoogle();
+                },
               ),
               const SizedBox(height: 32),
               const OrSignUpWith(),

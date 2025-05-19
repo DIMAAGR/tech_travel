@@ -24,7 +24,8 @@ import 'package:tech_travel/src/core/services/firebase_services.dart' as _i2;
 /// A class which mocks [FirebaseAuthService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFirebaseAuthService extends _i1.Mock implements _i2.FirebaseAuthService {
+class MockFirebaseAuthService extends _i1.Mock
+    implements _i2.FirebaseAuthService {
   MockFirebaseAuthService() {
     _i1.throwOnMissingStub(this);
   }

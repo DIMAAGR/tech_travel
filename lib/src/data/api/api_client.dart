@@ -1,43 +1,36 @@
-// import 'package:dio/dio.dart';
-// import 'package:retrofit/retrofit.dart';
-// import 'package:tech_travel/src/core/const/api_constants.dart';
+import 'package:dio/dio.dart';
+import 'package:retrofit/retrofit.dart';
 
-// @RestApi(baseUrl: ApiConstants.baseUrl)
-// abstract class ApiClient {
-//   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
+part 'api_client.g.dart';
 
-//   @GET('/movies')
-//   Future<List<MovieModel>> getMovies();
+@RestApi()
+abstract class ApiClient {
+  factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 
-//   // Auth
-//   @POST('/auth/local/register')
-//   Future<HttpResponse> registerUser(@Body() Map<String, dynamic> body);
+  @POST('/auth/local/register')
+  Future<HttpResponse> registerUser(@Body() Map<String, dynamic> body);
 
-//   // User
-//   @PATCH('/users/updateMe')
-//   Future<HttpResponse> updateMe(@Body() Map<String, dynamic> body);
+  @PATCH('/users/updateMe')
+  Future<HttpResponse> updateMe(@Body() Map<String, dynamic> body);
 
-//   @GET('/users/me')
-//   Future<UserModel> getCurrentUser();
+  // @GET('/users/me')
+  // Future<void> getCurrentUser();
 
-//   @DELETE('/users/{id}')
-//   Future<HttpResponse> deleteUser(@Path('id') String userId);
+  // @DELETE('/users/{id}')
+  // Future<HttpResponse> deleteUser(@Path('id') String userId);
 
-//   // Movies
-//   @GET('/movies?populate=poster')
-//   Future<List<MovieModel>> getMovies();
+  // @GET('/movies?populate=poster')
+  // Future<List<dynamic>> getMovies();
 
-//   // Likes
-//   @GET('/likes?populate=*')
-//   Future<List<LikeModel>> getLikes();
+  // @GET('/likes?populate=*')
+  // Future<List<dynamic>> getLikes();
 
-//   @POST('/likes')
-//   Future<HttpResponse> postLike(@Body() Map<String, dynamic> body);
+  // @POST('/likes')
+  // Future<HttpResponse> postLike(@Body() Map<String, dynamic> body);
 
-//   @DELETE('/likes/{id}')
-//   Future<HttpResponse> deleteLike(@Path('id') String likeId);
+  // @DELETE('/likes/{id}')
+  // Future<HttpResponse> deleteLike(@Path('id') String likeId);
 
-//   // Subtitles
-//   @GET('/subtitles')
-//   Future<List<SubtitleModel>> getSubtitles(@Query('filters[movie_id]') int movieId);
-// }
+  // @GET('/subtitles')
+  // Future<List<dynamic>> getSubtitles(@Query('filters[movie_id]') int movieId);
+}
