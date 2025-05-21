@@ -10,9 +10,9 @@ import 'package:tech_travel/src/core/theme/app_text_style.dart';
 import 'package:tech_travel/src/presentation/components/icon/untold_icon.dart';
 import 'package:tech_travel/src/presentation/components/icon/untold_icon_data.dart';
 import 'package:tech_travel/src/presentation/components/untold_alt_button.dart';
-import 'package:tech_travel/src/presentation/components/untold_back_button.dart';
 import 'package:tech_travel/src/presentation/components/untold_button.dart';
 import 'package:tech_travel/src/presentation/components/untold_logo.dart';
+import 'package:tech_travel/src/presentation/components/untold_modal.dart';
 import 'package:tech_travel/src/presentation/components/untold_page_title.dart';
 import 'package:tech_travel/src/presentation/components/untold_snackbar.dart';
 import 'package:tech_travel/src/presentation/components/untold_text_button.dart';
@@ -91,53 +91,42 @@ class _OnboardingViewState extends State<OnboardingView> {
                       showModalBottomSheet(
                           context: context,
                           builder: (context) {
-                            return Padding(
-                              padding: const EdgeInsets.all(32.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Row(
+                            return UntoldModal(
+                              title: 'chooseImage'.tr().toUpperCase(),
+                              children: [
+                                const SizedBox(height: 16),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8.0,
+                                  ),
+                                  child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      const UntoldBackButton(),
-                                      Text(
-                                        'chooseImage'.tr().toUpperCase(),
-                                        style: AppTextStyle.subtitle1.copyWith(fontSize: 12),
+                                      UntoldAltButton(
+                                        icon: UntoldIcons.camera,
+                                        iconColor: AppColors.purple1,
+                                        title: 'takePhoto'.tr(),
+                                        backgroundColor: AppColors.purple3,
+                                        borderColor: AppColors.purple1,
+                                        onPressed: () {
+                                          widget.viewModel.getImageFromCamera();
+                                        },
                                       ),
-                                      const SizedBox(),
+                                      UntoldAltButton(
+                                        icon: UntoldIcons.gallery,
+                                        iconColor: AppColors.mediumGrey4,
+                                        title: 'chooseFromGallery'.tr(),
+                                        backgroundColor: AppColors.mediumGrey3,
+                                        borderColor: AppColors.mediumGrey2,
+                                        onPressed: () {
+                                          widget.viewModel.getImageFromGallery();
+                                        },
+                                      ),
                                     ],
                                   ),
-                                  const SizedBox(height: 24),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        UntoldAltButton(
-                                          icon: UntoldIcons.camera,
-                                          iconColor: AppColors.purple1,
-                                          title: 'takePhoto'.tr(),
-                                          backgroundColor: AppColors.purple3,
-                                          borderColor: AppColors.purple1,
-                                          onPressed: () {
-                                            widget.viewModel.getImageFromCamera();
-                                          },
-                                        ),
-                                        UntoldAltButton(
-                                          icon: UntoldIcons.gallery,
-                                          iconColor: AppColors.mediumGrey4,
-                                          title: 'chooseFromGallery'.tr(),
-                                          backgroundColor: AppColors.mediumGrey3,
-                                          borderColor: AppColors.mediumGrey2,
-                                          onPressed: () {
-                                            widget.viewModel.getImageFromGallery();
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                                const SizedBox(height: 32),
+                              ],
                             );
                           });
                     },

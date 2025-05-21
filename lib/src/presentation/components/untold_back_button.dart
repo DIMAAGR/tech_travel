@@ -10,7 +10,7 @@ class UntoldBackButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed ?? () => Navigator.pop(context),
       child: const Icon(
-        Icons.arrow_back_ios,
+        Icons.arrow_back_ios_outlined,
         size: 32,
         color: AppColors.purple1,
       ),

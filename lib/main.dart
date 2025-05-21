@@ -7,8 +7,8 @@ import 'package:tech_travel/src/core/di/injector.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
 
+  await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp();
   await dotenv.load(fileName: ".env");
 

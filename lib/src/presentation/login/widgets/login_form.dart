@@ -73,6 +73,7 @@ class _LoginFormState extends State<LoginForm> {
         ),
         const SizedBox(height: 24),
         UntoldButton(
+          horizontalPadding: 56,
           title: 'login'.tr(),
           onPressed: widget.onLoginPressed,
         ),

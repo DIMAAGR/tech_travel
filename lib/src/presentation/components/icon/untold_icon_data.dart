@@ -8,6 +8,16 @@ abstract final class UntoldIcons {
   static final google_button = UntoldIconData('assets/icons/google_button_icon.svg');
   static final camera = UntoldIconData('assets/icons/camera.svg');
   static final gallery = UntoldIconData('assets/icons/gallery.svg');
+  static final like_enabled = UntoldIconData('assets/icons/like_enabled.svg');
+  static final like_disabled = UntoldIconData('assets/icons/like_disabled.svg');
+  static final dislike_enabled = UntoldIconData('assets/icons/dislike_enabled.svg');
+  static final dislike_disabled = UntoldIconData('assets/icons/dislike_disabled.svg');
+  static final love_enabled = UntoldIconData('assets/icons/love_enabled.svg');
+  static final love_disabled = UntoldIconData('assets/icons/love_disabled.svg');
+  static final share = UntoldIconData('assets/icons/share.svg');
+  static final close = UntoldIconData('assets/icons/close.svg');
+  static final shield = UntoldIconData('assets/icons/shield.svg');
+  static final trash = UntoldIconData('assets/icons/trash.svg');
 }
 
 class UntoldIconData {
