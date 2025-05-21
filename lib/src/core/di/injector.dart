@@ -11,6 +11,7 @@ import 'package:tech_travel/src/presentation/home/home_view_model.dart';
 import 'package:tech_travel/src/presentation/login/login_view_model.dart';
 import 'package:tech_travel/src/presentation/onboarding/onboarding_view_model.dart';
 import 'package:tech_travel/src/presentation/signup/sign_up_view_model.dart';
+import 'package:tech_travel/src/presentation/user_profile/user_profile_view_model.dart';
 
 final getIt = GetIt.instance;
 
@@ -77,6 +78,13 @@ void setupInjector() {
   // ===================================================
   getIt.registerLazySingleton<HomeViewModel>(
     () => HomeViewModel(),
+  );
+
+  // ===================================================
+  // Home View
+  // ===================================================
+  getIt.registerLazySingleton<UserProfileViewModel>(
+    () => UserProfileViewModel(),
   );
 
   ///

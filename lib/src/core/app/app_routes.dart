@@ -5,4 +5,7 @@ abstract class AppRoutes {
   static const String forgotPassword = '/forgot-password';
   static const String emailSend = '/forgot-password/send';
   static const String home = '/home';
+  static const String profile = '/profile';
+  static const String editProfile = '/profile/edit';
+  static const String changePassword = '/profile/change-password';
 }

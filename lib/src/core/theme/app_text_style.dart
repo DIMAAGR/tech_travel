@@ -37,6 +37,15 @@ abstract class AppTextStyle {
     fontSize: 13.58,
   );
 
+  static const TextStyle button3 = TextStyle(
+    fontFamily: 'Epilogue',
+    fontWeight: FontWeight.w500,
+    color: AppColors.purple1,
+    fontSize: 14,
+    height: 1.53,
+    letterSpacing: -0.05,
+  );
+
   static TextStyle subtitle1 = const TextStyle(
     color: Colors.white,
     fontFamily: 'Epilogue',
@@ -59,6 +68,22 @@ abstract class AppTextStyle {
     fontSize: 14,
     height: 1.62,
     letterSpacing: 0.045,
+  );
+  static TextStyle subtitle4 = const TextStyle(
+    color: Colors.white,
+    fontFamily: 'Epilogue',
+    fontWeight: FontWeight.w600,
+    fontSize: 18,
+    height: 1.0,
+    letterSpacing: 0.045,
+  );
+  static TextStyle subtitle7 = const TextStyle(
+    color: Colors.white,
+    fontFamily: 'Epilogue',
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    height: 1.0,
+    letterSpacing: 0.05,
   );
 
   static TextStyle body2 = const TextStyle(
@@ -92,7 +117,7 @@ abstract class AppTextStyle {
     color: Colors.white,
     fontWeight: FontWeight.w400,
     fontSize: 10,
-    height: 14.67 / 10,
+    height: 1.467,
     letterSpacing: 0,
   );
 
@@ -112,5 +137,59 @@ abstract class AppTextStyle {
     fontSize: 14,
     height: 1.0,
     letterSpacing: 0.28,
+  );
+
+  static const TextStyle title = TextStyle(
+    fontFamily: 'Epilogue',
+    fontWeight: FontWeight.w700,
+    color: Colors.white,
+    fontSize: 26,
+    height: 1.53,
+    letterSpacing: -0.05,
+  );
+
+  static const TextStyle body1 = TextStyle(
+    fontFamily: 'Epilogue',
+    color: Colors.white,
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    height: 1.0,
+    letterSpacing: 0,
+  );
+
+  static const subtitle5 = TextStyle(
+    fontFamily: 'Epilogue',
+    color: Colors.white,
+    fontWeight: FontWeight.w700,
+    fontSize: 14,
+    height: 1.0,
+    letterSpacing: 0.28,
+  );
+
+  static const subtitle6 = TextStyle(
+    fontFamily: 'Epilogue',
+    color: Colors.white,
+    fontWeight: FontWeight.w500,
+    fontSize: 14,
+    height: 1.0,
+    letterSpacing: 0.28,
+  );
+
+  static const TextStyle subscriptionPlanTitle = TextStyle(
+    fontFamily: 'Epilogue',
+    color: Colors.white,
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    height: 1.0,
+    letterSpacing: 0.05,
+  );
+
+  static const TextStyle subscriptionPlanValue = TextStyle(
+    fontFamily: 'Epilogue',
+    color: Colors.white,
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
+    height: 1.0,
+    letterSpacing: 0.05,
   );
 }

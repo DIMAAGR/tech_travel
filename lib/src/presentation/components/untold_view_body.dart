@@ -4,11 +4,13 @@ class UntoldViewBody extends StatelessWidget {
   final List<Widget> children;
   final CrossAxisAlignment? crossAxisAlignment;
   final MainAxisAlignment? mainAxisAlignment;
+  final EdgeInsets? padding;
   const UntoldViewBody({
     super.key,
     required this.children,
     this.crossAxisAlignment,
     this.mainAxisAlignment,
+    this.padding,
   });
 
   @override
@@ -20,10 +22,13 @@ class UntoldViewBody extends StatelessWidget {
             child: ConstrainedBox(
               constraints: BoxConstraints(minHeight: constraints.maxHeight),
               child: IntrinsicHeight(
-                child: Column(
-                  crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
-                  mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.spaceAround,
-                  children: children,
+                child: Padding(
+                  padding: padding ?? EdgeInsets.zero,
+                  child: Column(
+                    crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
+                    mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.spaceAround,
+                    children: children,
+                  ),
                 ),
               ),
             ),
