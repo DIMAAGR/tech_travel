@@ -16,6 +16,8 @@ abstract final class UntoldIcons {
   static final love_disabled = UntoldIconData('assets/icons/love_disabled.svg');
   static final share = UntoldIconData('assets/icons/share.svg');
   static final close = UntoldIconData('assets/icons/close.svg');
+  static final shield = UntoldIconData('assets/icons/shield.svg');
+  static final trash = UntoldIconData('assets/icons/trash.svg');
 }
 
 class UntoldIconData {

@@ -22,12 +22,13 @@ class UntoldAltButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return InkWell(
       borderRadius: BorderRadius.circular(32),
       onTap: onPressed,
       child: Container(
-        height: 152,
-        width: 152,
+        height: (screenWidth / 2) - 48,
+        width: (screenWidth / 2) - 48,
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: BorderRadius.circular(32),

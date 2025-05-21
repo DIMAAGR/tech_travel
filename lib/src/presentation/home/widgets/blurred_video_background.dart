@@ -49,12 +49,15 @@ class _BlurredVideoBackgroundState extends State<BlurredVideoBackground> {
         // Video background
         if (_controller.value.isInitialized)
           SizedBox.expand(
-            child: FittedBox(
-              fit: BoxFit.cover,
-              child: SizedBox(
-                width: _controller.value.size.width,
-                height: _controller.value.size.height,
-                child: VideoPlayer(_controller),
+            child: Transform.scale(
+              scale: 1.2,
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: SizedBox(
+                  width: _controller.value.size.width,
+                  height: _controller.value.size.height,
+                  child: VideoPlayer(_controller),
+                ),
               ),
             ),
           ),

@@ -39,4 +39,23 @@ class AppGradients {
     ],
     stops: [0.0, 1.2577],
   );
+
+  static const layeredBlackOverlay = [
+    LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xCC000000),
+        Color(0x00000000),
+      ],
+    ),
+    LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0x33000000),
+        Color(0x33000000),
+      ],
+    ),
+  ];
 }

@@ -9,6 +9,7 @@ class UntoldTextFormField extends StatelessWidget {
   final Widget? suffix;
   final bool obscure;
   final TextInputType? keyboardType;
+  final EdgeInsets? padding;
   const UntoldTextFormField({
     super.key,
     this.hintText,
@@ -17,12 +18,13 @@ class UntoldTextFormField extends StatelessWidget {
     this.useShadow = true,
     this.keyboardType,
     this.obscure = false,
+    this.padding,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      padding: padding ?? const EdgeInsets.symmetric(horizontal: 24.0),
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(9),
