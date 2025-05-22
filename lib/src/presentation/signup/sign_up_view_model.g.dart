@@ -13,13 +13,13 @@ mixin _$SignupViewModel on SignUpViewModelBase, Store {
       Atom(name: 'SignUpViewModelBase.signupState', context: context);
 
   @override
-  ViewModelState<Failure, void> get signupState {
+  ViewModelState<Failure, RequestType> get signupState {
     _$signupStateAtom.reportRead();
     return super.signupState;
   }
 
   @override
-  set signupState(ViewModelState<Failure, void> value) {
+  set signupState(ViewModelState<Failure, RequestType> value) {
     _$signupStateAtom.reportWrite(value, super.signupState, () {
       super.signupState = value;
     });
@@ -31,6 +31,22 @@ mixin _$SignupViewModel on SignUpViewModelBase, Store {
   @override
   Future<void> signupWithEmail() {
     return _$signupWithEmailAsyncAction.run(() => super.signupWithEmail());
+  }
+
+  late final _$signupWithGoogleAsyncAction =
+      AsyncAction('SignUpViewModelBase.signupWithGoogle', context: context);
+
+  @override
+  Future<void> signupWithGoogle() {
+    return _$signupWithGoogleAsyncAction.run(() => super.signupWithGoogle());
+  }
+
+  late final _$getUserDataAsyncAction =
+      AsyncAction('SignUpViewModelBase.getUserData', context: context);
+
+  @override
+  Future<void> getUserData() {
+    return _$getUserDataAsyncAction.run(() => super.getUserData());
   }
 
   @override

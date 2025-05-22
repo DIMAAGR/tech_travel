@@ -1,4 +1,4 @@
-package com.dev.italo.untold
+package com.app.untold
 
 import io.flutter.embedding.android.FlutterActivity
 

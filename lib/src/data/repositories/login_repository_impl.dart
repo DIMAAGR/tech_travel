@@ -36,21 +36,35 @@ class LoginRepositoryImpl implements LoginRepository {
     } on FirebaseException catch (_) {
       return Left(FirebaseSignInFailure());
     } on SignInWithAppleAuthorizationException catch (_) {
-      return Left(FirebaseSignInFailure(message: 'Apple sign-in not authorized'));
+      return Left(FirebaseSignInFailure(message: 'Email sign-in not authorized'));
     } on SocketException catch (_) {
       return Left(NetworkFailure());
     }
   }
 
   @override
-  Future<Either<Failure, void>> signInWithGoogle() async {
+  Future<Either<Failure, bool>> signInWithGoogle() async {
     try {
-      await _authService.loginWithGoogle();
-      return const Right(null);
+      final result = await _authService.loginWithGoogle();
+      return Right(result);
     } on FirebaseException catch (_) {
       return Left(FirebaseSignInFailure());
     } on SignInWithAppleAuthorizationException catch (_) {
       return Left(FirebaseSignInFailure(message: 'Google sign-in not authorized'));
+    } on SocketException catch (_) {
+      return Left(NetworkFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> signUpWithEmail(String email, String password) async {
+    try {
+      await _authService.signUpWithEmail(email, password);
+      return const Right(null);
+    } on FirebaseException catch (_) {
+      return Left(FirebaseSignInFailure());
+    } on SignInWithAppleAuthorizationException catch (_) {
+      return Left(FirebaseSignInFailure(message: 'Email sign-up not authorized'));
     } on SocketException catch (_) {
       return Left(NetworkFailure());
     }

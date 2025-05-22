@@ -8,7 +8,8 @@ import 'package:tech_travel/src/presentation/components/untold_modal.dart';
 import 'package:tech_travel/src/presentation/user_profile/modals/warning_modal.dart';
 
 class SubscriptionModal extends StatelessWidget {
-  const SubscriptionModal({super.key});
+  final VoidCallback onConfirm;
+  const SubscriptionModal({super.key, required this.onConfirm});
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +83,7 @@ class SubscriptionModal extends StatelessWidget {
                                 title: 'cancelPlanConfirmTitle'.tr(),
                                 subtitle: 'cancelPlanConfirmDescription'.tr(),
                                 confirmText: 'terminatePlan'.tr(),
-                                onConfirm: () {},
+                                onConfirm: onConfirm,
                               );
                             });
                       }),

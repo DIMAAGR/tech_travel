@@ -60,6 +60,15 @@ class FirebaseAuthService {
     }
   }
 
+  Future<bool> forgotPassword(String email) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+      return true;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> signUpWithEmail(String email, String password) async {
     await _firebaseAuth.createUserWithEmailAndPassword(
       email: email,

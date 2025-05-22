@@ -2,8 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:tech_travel/src/core/app/app_routes.dart';
+import 'package:tech_travel/src/core/errors/already_registered_failure.dart';
 import 'package:tech_travel/src/core/errors/failure.dart';
 import 'package:tech_travel/src/core/state/view_model_state.dart';
+import 'package:tech_travel/src/presentation/components/untold_loading.dart';
 import 'package:tech_travel/src/presentation/components/untold_logo.dart';
 import 'package:tech_travel/src/presentation/components/untold_apple_google_buttons.dart';
 import 'package:tech_travel/src/presentation/components/untold_page_title.dart';
@@ -26,6 +28,7 @@ class _SignUpViewState extends State<SignUpView> {
   final confirmPasswordController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final UntoldLoading untoldLoading = UntoldLoading();
 
   late ReactionDisposer _reactionDisposer;
   @override
@@ -45,12 +48,29 @@ class _SignUpViewState extends State<SignUpView> {
     _reactionDisposer = reaction<ViewModelState>(
       (_) => widget.viewModel.signupState,
       (state) {
-        if (state is ErrorState<Failure, void>) {
-          UntoldSnackbar.showMessage(
-            context,
-            useBorder: true,
-            message: state.error.message.tr(),
-          );
+        if (state is ErrorState<Failure, RequestType>) {
+          untoldLoading.hideLoadingPage(context);
+
+          if (state.error is AlreadyRegisteredFailure) {
+            Navigator.pushNamedAndRemoveUntil(context, AppRoutes.home, (_) => false);
+          } else {
+            UntoldSnackbar.showMessage(
+              context,
+              useBorder: true,
+              message: state.error.message.tr(),
+            );
+          }
+        } else if (state is SuccessState && widget.viewModel.isLoggedIn) {
+          untoldLoading.hideLoadingPage(context);
+          if (state.success == RequestType.signup) {
+            Navigator.pushNamed(context, AppRoutes.onboarding);
+          } else {
+            Navigator.pushNamedAndRemoveUntil(context, AppRoutes.home, (_) => false);
+          }
+        } else if (state is SuccessState) {
+          untoldLoading.hideLoadingPage(context);
+        } else if (state is LoadingState) {
+          untoldLoading.showLoadingPage(context);
         }
       },
     );
@@ -88,8 +108,12 @@ class _SignUpViewState extends State<SignUpView> {
               ),
               const SizedBox(height: 24),
               UntoldAppleGoogleButtons(
-                onApplePressed: () {},
-                onGooglePressed: () {},
+                onApplePressed: () {
+                  widget.viewModel.signupWithApple();
+                },
+                onGooglePressed: () {
+                  widget.viewModel.signupWithGoogle();
+                },
               ),
               const SizedBox(height: 32),
               const OrSignUpWith(),
@@ -100,9 +124,9 @@ class _SignUpViewState extends State<SignUpView> {
             confirmPasswordController: confirmPasswordController,
             emailController: emailController,
             passwordController: passwordController,
-            onSignupPressed: () {
+            onSignupPressed: () async {
+              FocusScope.of(context).unfocus();
               widget.viewModel.signupWithEmail();
-              Navigator.pushNamed(context, AppRoutes.onboarding);
             },
           ),
           const SizedBox(height: 24),

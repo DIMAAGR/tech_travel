@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
 import 'package:tech_travel/src/core/app/app_routes.dart';
+import 'package:tech_travel/src/core/errors/failure.dart';
+import 'package:tech_travel/src/core/state/view_model_state.dart';
 import 'package:tech_travel/src/core/theme/app_text_style.dart';
-import 'package:tech_travel/src/data/models/movie_model.dart';
+import 'package:tech_travel/src/domain/entities/comments_entity.dart';
+import 'package:tech_travel/src/domain/entities/movie_entity.dart';
 import 'package:tech_travel/src/presentation/components/untold_logo.dart';
 import 'package:tech_travel/src/presentation/home/home_view_model.dart';
-import 'package:tech_travel/src/presentation/home/widgets/blurred_video_background.dart';
+import 'package:tech_travel/src/presentation/home/widgets/blurred_thumb_background.dart';
+import 'package:tech_travel/src/presentation/home/widgets/rating_dialog.dart';
 import 'package:tech_travel/src/presentation/home/widgets/user_button.dart';
 import 'package:tech_travel/src/presentation/home/widgets/video_card.dart';
 
@@ -17,6 +23,36 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final PageController _pageController = PageController(viewportFraction: 0.92);
+  late ReactionDisposer _reactionDisposer;
+
+  @override
+  void initState() {
+    _pageController.addListener(() => widget.viewModel.updateIndex(_pageController.page!.toInt()));
+    widget.viewModel.getMovie();
+    initReaction();
+
+    super.initState();
+  }
+
+  initReaction() {
+    _reactionDisposer = reaction<ViewModelState>(
+      (_) => widget.viewModel.movieState,
+      (state) {
+        if (state is SuccessState) {
+          widget.viewModel.getAllComments();
+          widget.viewModel.getAllLikes();
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _reactionDisposer();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,43 +72,63 @@ class _HomeViewState extends State<HomeView> {
           ),
         ],
       ),
-      body: BlurredVideoBackground(
-          videoUrl:
-              'https://s3-figma-videos-production-sig.figma.com/video/1137114552518648666/TEAM/6ebd/23b4/-cd4c-432a-8374-98cbe9c3af35?Expires=1748822400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ApWSjRuuY-AZHPDkgKeX-jgc2~rc8KNt4XZBB1mdTKCKM40KGPGuMdRXZQrai1DPnxMLl08X4TuiE~ZO7X1rJxQwIsB6GQndPxQOaLAymSNJYYm5yicbW5cfiJI0OLVK7hirEGY4xRd5ffxxhc6G87209tqMAvEPTPkf4~eqiY9bUyfbeCK1QZ69KLYn1zw3uwkKPxi3TlP5ZZufQKlzYMpKd9IM61HPL~ory-xH3--qmCVwkHcUxD8UZYBJKC384YE9dxTeLrk0oui7U3i6MtIX0OA8BZPd9s8BqGDkTBzbB~eHNQzl~itQx96eyAo2qidnOBSO80-Qnr~v5POEJA__',
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      'Now Showing',
-                      style: AppTextStyle.h2,
+      body: Observer(builder: (context) {
+        final bool isSuccess = widget.viewModel.movieState is SuccessState;
+        final bool isCommentSuccess = widget.viewModel.commentState is SuccessState;
+
+        return BlurredThumbBackground(
+            imageUrl: isSuccess ? (widget.viewModel.movieState as SuccessState<Failure, MovieEntity>).success.getThumb(widget.viewModel.index)! : '',
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          'Now Showing',
+                          style: AppTextStyle.h2,
+                        ),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  VideoCard(
-                    entity: MovieModel.fromJson(
-                      {
-                        'trailer_url':
-                            'https://s3-figma-videos-production-sig.figma.com/video/1137114552518648666/TEAM/6ebd/23b4/-cd4c-432a-8374-98cbe9c3af35?Expires=1748822400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ApWSjRuuY-AZHPDkgKeX-jgc2~rc8KNt4XZBB1mdTKCKM40KGPGuMdRXZQrai1DPnxMLl08X4TuiE~ZO7X1rJxQwIsB6GQndPxQOaLAymSNJYYm5yicbW5cfiJI0OLVK7hirEGY4xRd5ffxxhc6G87209tqMAvEPTPkf4~eqiY9bUyfbeCK1QZ69KLYn1zw3uwkKPxi3TlP5ZZufQKlzYMpKd9IM61HPL~ory-xH3--qmCVwkHcUxD8UZYBJKC384YE9dxTeLrk0oui7U3i6MtIX0OA8BZPd9s8BqGDkTBzbB~eHNQzl~itQx96eyAo2qidnOBSO80-Qnr~v5POEJA__',
-                        'genre': 'Musical',
-                        'title': 'Barbie',
-                        'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-                        'last_comment': 'Lorem ipsum dolor sit amet, consect...',
-                        'release_date': DateTime(2023, 2, 29).toIso8601String(),
-                        'comments_count': 1322,
-                        'share_link': 'https://example.com/',
-                      },
+                    const SizedBox(height: 16),
+                    Expanded(
+                      child: PageView.builder(
+                        scrollDirection: Axis.horizontal,
+                        controller: _pageController,
+                        itemCount: isSuccess ? (widget.viewModel.movieState as SuccessState<Failure, MovieEntity>).success.data.length : 1,
+                        itemBuilder: (context, index) {
+                          widget.viewModel.updateIndex(index);
+                          return VideoCard(
+                            totalComments: isCommentSuccess ? (widget.viewModel.commentState as SuccessState<Failure, List<CommentsEntity>>).success.length : 0,
+                            commentsEntity:
+                                isCommentSuccess ? (widget.viewModel.commentState as SuccessState<Failure, List<CommentsEntity>>).success.first : null,
+                            entity: isSuccess ? (widget.viewModel.movieState as SuccessState<Failure, MovieEntity>).success.data[index] : null,
+                            isLiked: widget.viewModel.isLiked(),
+                            onLikePressed: (like) async {
+                              if (like == LikeType.liked) {
+                                await widget.viewModel.addLike();
+                                await widget.viewModel.getAllLikes();
+                              } else {
+                                await widget.viewModel.removeLike();
+                              }
+                            },
+                            onWatchPressed: () {
+                              widget.viewModel.getAllComments();
+                            },
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                ],
+                    const SizedBox(height: 16),
+                  ],
+                ),
               ),
-            ),
-          )),
+            ));
+      }),
     );
   }
 }

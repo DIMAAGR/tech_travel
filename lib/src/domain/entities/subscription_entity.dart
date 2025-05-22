@@ -1,3 +1,5 @@
+import 'package:equatable/equatable.dart';
+
 enum SubscriptionType {
   premium('premium'),
   basic('basic'),
@@ -32,14 +34,17 @@ enum ExpireTime {
       };
 }
 
-class SubscriptionEntity {
+class SubscriptionEntity extends Equatable {
   final SubscriptionType type;
   final ExpireTime expireIn;
   final DateTime inscriptionDate;
 
-  SubscriptionEntity({
+  const SubscriptionEntity({
     required this.expireIn,
     required this.inscriptionDate,
     required this.type,
   });
+
+  @override
+  List<Object?> get props => [type, expireIn, inscriptionDate];
 }

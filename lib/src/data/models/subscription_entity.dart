@@ -1,7 +1,7 @@
 import 'package:tech_travel/src/domain/entities/subscription_entity.dart';
 
 class SubscriptionModel extends SubscriptionEntity {
-  SubscriptionModel({
+  const SubscriptionModel({
     required super.type,
     required super.expireIn,
     required super.inscriptionDate,

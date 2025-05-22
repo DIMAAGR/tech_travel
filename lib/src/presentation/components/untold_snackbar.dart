@@ -12,6 +12,7 @@ abstract class UntoldSnackbar {
     bool useBorder = false,
     VoidCallback? onPressed,
     double? leftPadding,
+    double? topPadding,
   }) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -22,7 +23,7 @@ abstract class UntoldSnackbar {
           padding: EdgeInsets.zero,
           behavior: SnackBarBehavior.floating,
           margin: EdgeInsets.only(
-            bottom: MediaQuery.of(context).size.height - 150,
+            bottom: MediaQuery.of(context).size.height - (topPadding ?? 166),
           ),
           duration: const Duration(seconds: 3),
           content: Row(
