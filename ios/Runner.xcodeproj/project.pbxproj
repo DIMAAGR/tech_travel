@@ -167,15 +167,6 @@
 			path = Runner;
 			sourceTree = "<group>";
 		};
-		C51C2ED1122F84CF8325374F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				08DBF888729D3F27C531757C /* Pods_Runner.framework */,
-				AA2AE91CF6B53FD987666E41 /* Pods_RunnerTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */

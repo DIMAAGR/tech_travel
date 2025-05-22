@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:tech_travel/src/core/app/app_routes.dart';
 import 'package:tech_travel/src/core/errors/failure.dart';
 import 'package:tech_travel/src/core/state/view_model_state.dart';
 import 'package:tech_travel/src/core/theme/app_colors.dart';
@@ -11,6 +12,7 @@ import 'package:tech_travel/src/presentation/components/icon/untold_icon.dart';
 import 'package:tech_travel/src/presentation/components/icon/untold_icon_data.dart';
 import 'package:tech_travel/src/presentation/components/untold_alt_button.dart';
 import 'package:tech_travel/src/presentation/components/untold_button.dart';
+import 'package:tech_travel/src/presentation/components/untold_loading.dart';
 import 'package:tech_travel/src/presentation/components/untold_logo.dart';
 import 'package:tech_travel/src/presentation/components/untold_modal.dart';
 import 'package:tech_travel/src/presentation/components/untold_page_title.dart';
@@ -35,17 +37,42 @@ class _OnboardingViewState extends State<OnboardingView> {
   final yourNameController = TextEditingController();
 
   late ReactionDisposer _imageReactionDisposer;
+  late ReactionDisposer _updateUserReactionDisposer;
+
+  final UntoldLoading untoldLoading = UntoldLoading();
 
   void setupReactions() {
+    yourNameController.addListener(() => widget.viewModel.setName(yourNameController.text));
+
     _imageReactionDisposer = reaction<ViewModelState>(
       (_) => widget.viewModel.imageState,
       (state) {
         if (state is ErrorState<Failure, File>) {
+          untoldLoading.hideLoadingPage(context);
           UntoldSnackbar.showMessage(
             context,
             useBorder: true,
             message: state.error.message.tr(),
           );
+        } else if (state is LoadingState) {
+          untoldLoading.showLoadingPage(context);
+        }
+      },
+    );
+
+    _updateUserReactionDisposer = reaction<ViewModelState>(
+      (_) => widget.viewModel.updateState,
+      (state) {
+        if (state is ErrorState<Failure, void>) {
+          untoldLoading.hideLoadingPage(context);
+          UntoldSnackbar.showMessage(
+            context,
+            useBorder: true,
+            message: state.error.message.tr(),
+          );
+        } else if (state is SuccessState) {
+          untoldLoading.hideLoadingPage(context);
+          Navigator.pushNamedAndRemoveUntil(context, AppRoutes.home, (_) => false);
         }
       },
     );
@@ -62,6 +89,7 @@ class _OnboardingViewState extends State<OnboardingView> {
   void dispose() {
     super.dispose();
     _imageReactionDisposer();
+    _updateUserReactionDisposer();
   }
 
   @override
@@ -173,7 +201,10 @@ class _OnboardingViewState extends State<OnboardingView> {
               UntoldButton(
                 horizontalPadding: 40,
                 title: 'continue'.tr(),
-                onPressed: () {},
+                onPressed: () {
+                  FocusScope.of(context).unfocus();
+                  widget.viewModel.updateUser();
+                },
               ),
               UntoldTextButton(
                 title: 'back'.tr(),

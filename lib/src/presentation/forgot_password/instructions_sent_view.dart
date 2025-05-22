@@ -86,7 +86,7 @@ class _InstructionsSentViewState extends State<InstructionsSentView> {
               Navigator.pushNamedAndRemoveUntil(context, AppRoutes.login, (_) => false);
             },
           ),
-          const SizedBox(height: 32)
+          const SizedBox(height: 48)
         ],
       ),
     );

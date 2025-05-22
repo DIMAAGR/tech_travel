@@ -1,9 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobx/mobx.dart';
 import 'package:tech_travel/src/core/app/app_routes.dart';
+import 'package:tech_travel/src/core/errors/failure.dart';
+import 'package:tech_travel/src/core/state/view_model_state.dart';
 import 'package:tech_travel/src/core/theme/app_text_style.dart';
 import 'package:tech_travel/src/presentation/components/untold_button.dart';
+import 'package:tech_travel/src/presentation/components/untold_loading.dart';
 import 'package:tech_travel/src/presentation/components/untold_logo.dart';
+import 'package:tech_travel/src/presentation/components/untold_snackbar.dart';
 import 'package:tech_travel/src/presentation/components/untold_text_button.dart';
 import 'package:tech_travel/src/presentation/components/untold_text_form_field.dart';
 import 'package:tech_travel/src/presentation/components/untold_view_body.dart';
@@ -23,9 +28,13 @@ class ForgotPasswordView extends StatefulWidget {
 class _ForgotPasswordViewState extends State<ForgotPasswordView> {
   bool animate = false;
   final emailTextController = TextEditingController();
+  UntoldLoading untoldLoading = UntoldLoading();
+
+  late ReactionDisposer _forgotPasswordReactionDisposer;
 
   @override
   void initState() {
+    _initReactionDisposer();
     super.initState();
     emailTextController.addListener(() => widget.viewModel.setEmail(emailTextController.text));
 
@@ -34,6 +43,35 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
         animate = true;
       });
     });
+  }
+
+  _initReactionDisposer() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {});
+    _forgotPasswordReactionDisposer = reaction<ViewModelState>(
+      (_) => widget.viewModel.forgotPasswordState,
+      (state) {
+        if (state is ErrorState<Failure, void>) {
+          untoldLoading.hideLoadingPage(context);
+
+          UntoldSnackbar.showMessage(
+            context,
+            useBorder: true,
+            message: state.error.message.tr(),
+          );
+        } else if (state is LoadingState) {
+          untoldLoading.showLoadingPage(context);
+        } else if (state is SuccessState) {
+          untoldLoading.hideLoadingPage(context);
+          Navigator.pushNamedAndRemoveUntil(context, AppRoutes.emailSend, (_) => false);
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _forgotPasswordReactionDisposer();
+    super.dispose();
   }
 
   @override
@@ -102,7 +140,8 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
           UntoldButton(
             title: 'sendResetInstructions'.tr(),
             onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(context, AppRoutes.emailSend, (_) => false);
+              FocusScope.of(context).unfocus();
+              widget.viewModel.forgotPassword();
             },
           ),
           const SizedBox(height: 8),
@@ -112,7 +151,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
             width: 192,
             onPressed: () => Navigator.pop(context),
           ),
-          const SizedBox(height: 32)
+          const SizedBox(height: 48)
         ],
       ),
     );

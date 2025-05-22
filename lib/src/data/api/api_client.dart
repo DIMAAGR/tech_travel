@@ -1,5 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:tech_travel/src/data/models/likes_model.dart';
+import 'package:tech_travel/src/data/models/movie_model.dart';
+import 'package:tech_travel/src/data/models/subtitle_model.dart';
+import 'package:tech_travel/src/data/models/user_model.dart';
 
 part 'api_client.g.dart';
 
@@ -13,24 +17,24 @@ abstract class ApiClient {
   @PATCH('/users/updateMe')
   Future<HttpResponse> updateMe(@Body() Map<String, dynamic> body);
 
-  // @GET('/users/me')
-  // Future<void> getCurrentUser();
+  @GET('/users/me')
+  Future<UserModel> getCurrentUser();
 
-  // @DELETE('/users/{id}')
-  // Future<HttpResponse> deleteUser(@Path('id') String userId);
+  @DELETE('/users/{id}')
+  Future<HttpResponse> deleteUser(@Path('id') String userId);
 
-  // @GET('/movies?populate=poster')
-  // Future<List<dynamic>> getMovies();
+  @GET('/movies?populate=poster')
+  Future<MovieModel> getMovies();
 
-  // @GET('/likes?populate=*')
-  // Future<List<dynamic>> getLikes();
+  @GET('/likes?populate=*')
+  Future<LikesModel> getLikes();
 
-  // @POST('/likes')
-  // Future<HttpResponse> postLike(@Body() Map<String, dynamic> body);
+  @POST('/likes')
+  Future<HttpResponse> postLike(@Body() Map<String, dynamic> body);
 
-  // @DELETE('/likes/{id}')
-  // Future<HttpResponse> deleteLike(@Path('id') String likeId);
+  @DELETE('/likes/{id}')
+  Future<HttpResponse> deleteLike(@Path('id') String likeId);
 
-  // @GET('/subtitles')
-  // Future<List<dynamic>> getSubtitles(@Query('filters[movie_id]') int movieId);
+  @GET('/subtitles')
+  Future<SubtitlesModel> getSubtitles(@Query('filters[movie_id]') int movieId);
 }

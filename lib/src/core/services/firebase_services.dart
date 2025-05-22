@@ -8,22 +8,21 @@ class FirebaseAuthService {
   FirebaseAuthService(this._firebaseAuth);
 
   Future<bool> loginWithGoogle() async {
-    //  try {
-    final googleUser = await GoogleSignIn().signIn();
-    if (googleUser == null) return false;
+    try {
+      final googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) return false;
 
-    final googleAuth = await googleUser.authentication;
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
+      final googleAuth = await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
 
-    await _firebaseAuth.signInWithCredential(credential);
-    return true;
-    //   return true;
-    // } catch (e) {
-    //   rethrow;
-    // }
+      await _firebaseAuth.signInWithCredential(credential);
+      return true;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<bool> loginWithApple() async {
@@ -55,6 +54,15 @@ class FirebaseAuthService {
         password: password,
       );
 
+      return true;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<bool> forgotPassword(String email) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
       return true;
     } catch (e) {
       rethrow;

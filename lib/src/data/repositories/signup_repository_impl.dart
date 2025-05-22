@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:tech_travel/src/core/errors/already_registered_failure.dart';
 import 'package:tech_travel/src/core/errors/api_failure.dart';
 import 'package:tech_travel/src/core/errors/failure.dart';
@@ -15,20 +16,28 @@ class SignupRepositoryImpl extends SignupRepository {
   SignupRepositoryImpl(this.api);
 
   @override
+  @override
   Future<Either<Failure, bool>> signup(SignupModel model) async {
     try {
-      final response = await api.registerUser(model.toJson());
-
-      if (response.response.statusCode == 200 || response.response.statusCode == 201) {
-        return const Right(true);
-      } else if (response.response.statusCode == 409) {
-        // 409 == Already Registered
-        return Left(AlreadyRegisteredFailure());
-      } else {
-        return Left(ApiFailure(message: 'Error code: ${response.response.statusCode} '));
-      }
-    } on SocketException catch (_) {
+      await api.registerUser(model.toJson());
+      return const Right(true);
+    } on SocketException {
       return Left(NetworkFailure());
+    } on DioException catch (e) {
+      final response = e.response;
+      final data = (response?.data as Map<String, dynamic>?) ?? {};
+      final errorMsg = data['error'] is Map ? (data['error']!['message'] as String?) : null;
+
+      if (errorMsg == 'Email or Username are already taken') {
+        return Left(AlreadyRegisteredFailure());
+      }
+
+      final code = response?.statusCode;
+      return Left(
+        ApiFailure(
+          message: code != null ? 'Error code: $code' : 'Unknown API error',
+        ),
+      );
     } catch (_) {
       return Left(ApiFailure());
     }

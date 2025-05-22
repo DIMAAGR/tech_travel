@@ -3,12 +3,21 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
-import 'dart:io' as _i5;
+import 'dart:async' as _i5;
+import 'dart:io' as _i7;
 
+import 'package:dartz/dartz.dart' as _i2;
+import 'package:mobx/mobx.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:tech_travel/src/core/services/image_picker_service.dart' as _i4;
-import 'package:tech_travel/src/core/services/permission_services.dart' as _i2;
+import 'package:tech_travel/src/core/errors/failure.dart' as _i9;
+import 'package:tech_travel/src/core/services/image_picker_service.dart' as _i6;
+import 'package:tech_travel/src/core/services/permission_services.dart' as _i4;
+import 'package:tech_travel/src/data/models/update_me_model.dart' as _i10;
+import 'package:tech_travel/src/data/services/user_service.dart' as _i11;
+import 'package:tech_travel/src/domain/entities/user_entity.dart' as _i12;
+import 'package:tech_travel/src/domain/usecases/update_user_use_case.dart'
+    as _i8;
+import 'package:tech_travel/src/domain/usecases/user_use_case.dart' as _i13;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -23,48 +32,174 @@ import 'package:tech_travel/src/core/services/permission_services.dart' as _i2;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
+  _FakeEither_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeReactiveContext_1 extends _i1.SmartFake
+    implements _i3.ReactiveContext {
+  _FakeReactiveContext_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [PermissionService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPermissionService extends _i1.Mock implements _i2.PermissionService {
+class MockPermissionService extends _i1.Mock implements _i4.PermissionService {
   MockPermissionService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<bool> requestGalleryPermission() => (super.noSuchMethod(
+  _i5.Future<bool> requestGalleryPermission() => (super.noSuchMethod(
         Invocation.method(
           #requestGalleryPermission,
           [],
         ),
-        returnValue: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+        returnValue: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
 }
 
 /// A class which mocks [ImagePickerService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockImagePickerService extends _i1.Mock
-    implements _i4.ImagePickerService {
+    implements _i6.ImagePickerService {
   MockImagePickerService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<_i5.File?> pickFromCamera() => (super.noSuchMethod(
+  _i5.Future<_i7.File?> pickFromCamera() => (super.noSuchMethod(
         Invocation.method(
           #pickFromCamera,
           [],
         ),
-        returnValue: _i3.Future<_i5.File?>.value(),
-      ) as _i3.Future<_i5.File?>);
+        returnValue: _i5.Future<_i7.File?>.value(),
+      ) as _i5.Future<_i7.File?>);
 
   @override
-  _i3.Future<_i5.File?> pickFromGallery() => (super.noSuchMethod(
+  _i5.Future<_i7.File?> pickFromGallery() => (super.noSuchMethod(
         Invocation.method(
           #pickFromGallery,
           [],
         ),
-        returnValue: _i3.Future<_i5.File?>.value(),
-      ) as _i3.Future<_i5.File?>);
+        returnValue: _i5.Future<_i7.File?>.value(),
+      ) as _i5.Future<_i7.File?>);
+}
+
+/// A class which mocks [UpdateUserUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUpdateUserUseCase extends _i1.Mock implements _i8.UpdateUserUseCase {
+  MockUpdateUserUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<_i2.Either<_i9.Failure, bool>> call(_i10.UpdateMeModel? model) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [model],
+        ),
+        returnValue: _i5.Future<_i2.Either<_i9.Failure, bool>>.value(
+            _FakeEither_0<_i9.Failure, bool>(
+          this,
+          Invocation.method(
+            #call,
+            [model],
+          ),
+        )),
+      ) as _i5.Future<_i2.Either<_i9.Failure, bool>>);
+}
+
+/// A class which mocks [UserService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUserService extends _i1.Mock implements _i11.UserService {
+  MockUserService() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  bool get isLoggedIn => (super.noSuchMethod(
+        Invocation.getter(#isLoggedIn),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  _i3.ReactiveContext get context => (super.noSuchMethod(
+        Invocation.getter(#context),
+        returnValue: _FakeReactiveContext_1(
+          this,
+          Invocation.getter(#context),
+        ),
+      ) as _i3.ReactiveContext);
+
+  @override
+  void clearUserData() => super.noSuchMethod(
+        Invocation.method(
+          #clearUserData,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setUserData(_i12.UserEntity? userEntity) => super.noSuchMethod(
+        Invocation.method(
+          #setUserData,
+          [userEntity],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void updateUserData({String? username}) => super.noSuchMethod(
+        Invocation.method(
+          #updateUserData,
+          [],
+          {#username: username},
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [GetUserDataUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetUserDataUseCase extends _i1.Mock
+    implements _i13.GetUserDataUseCase {
+  MockGetUserDataUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<_i2.Either<_i9.Failure, _i12.UserEntity>> call() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i5.Future<_i2.Either<_i9.Failure, _i12.UserEntity>>.value(
+            _FakeEither_0<_i9.Failure, _i12.UserEntity>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+          ),
+        )),
+      ) as _i5.Future<_i2.Either<_i9.Failure, _i12.UserEntity>>);
 }

@@ -7,7 +7,7 @@ class SignInWithGoogleUseCase {
 
   final LoginRepository _repository;
 
-  Future<Either<Failure, void>> call() async {
+  Future<Either<Failure, bool>> call() async {
     return _repository.signInWithGoogle();
   }
 }
@@ -29,5 +29,15 @@ class SignInWithEmailUseCase {
 
   Future<Either<Failure, void>> call(String email, String password) async {
     return _repository.signInWithEmail(email, password);
+  }
+}
+
+class SignUpWithEmailUseCase {
+  SignUpWithEmailUseCase(this._repository);
+
+  final LoginRepository _repository;
+
+  Future<Either<Failure, void>> call(String email, String password) async {
+    return _repository.signUpWithEmail(email, password);
   }
 }

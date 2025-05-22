@@ -25,6 +25,22 @@ mixin _$OnboardingViewModel on OnboardingViewModelBase, Store {
     });
   }
 
+  late final _$updateStateAtom =
+      Atom(name: 'OnboardingViewModelBase.updateState', context: context);
+
+  @override
+  ViewModelState<Failure, void> get updateState {
+    _$updateStateAtom.reportRead();
+    return super.updateState;
+  }
+
+  @override
+  set updateState(ViewModelState<Failure, void> value) {
+    _$updateStateAtom.reportWrite(value, super.updateState, () {
+      super.updateState = value;
+    });
+  }
+
   late final _$getImageFromCameraAsyncAction = AsyncAction(
       'OnboardingViewModelBase.getImageFromCamera',
       context: context);
@@ -45,10 +61,27 @@ mixin _$OnboardingViewModel on OnboardingViewModelBase, Store {
         .run(() => super.getImageFromGallery());
   }
 
+  late final _$updateUserAsyncAction =
+      AsyncAction('OnboardingViewModelBase.updateUser', context: context);
+
+  @override
+  Future<void> updateUser() {
+    return _$updateUserAsyncAction.run(() => super.updateUser());
+  }
+
+  late final _$getUserDataAsyncAction =
+      AsyncAction('OnboardingViewModelBase.getUserData', context: context);
+
+  @override
+  Future<void> getUserData() {
+    return _$getUserDataAsyncAction.run(() => super.getUserData());
+  }
+
   @override
   String toString() {
     return '''
-imageState: ${imageState}
+imageState: ${imageState},
+updateState: ${updateState}
     ''';
   }
 }
