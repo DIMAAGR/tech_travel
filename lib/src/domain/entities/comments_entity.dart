@@ -39,7 +39,7 @@ abstract class ComentsUserEntity extends Equatable implements JsonConvertible {
   final String? name;
   final String? email;
   final String? firebaseUid;
-  final dynamic photoUrl;
+  final String? photoUrl;
 
   @override
   List<Object?> get props => [

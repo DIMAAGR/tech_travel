@@ -53,7 +53,7 @@ void main() {
 
   group('logout', () {
     test('should go from InitialState → LoadingState → SuccessState and clear data on success', () async {
-      when(mockLogoutUseCase.call()).thenAnswer((_) async => Right(true));
+      when(mockLogoutUseCase.call()).thenAnswer((_) async => const Right(true));
 
       expect(viewModel.exitableState, isA<InitialState>());
 
@@ -90,7 +90,7 @@ void main() {
 
     test('should go InitialState → LoadingState → SuccessState and update data on success', () async {
       viewModel.username = testUsername;
-      when(mockUpdateUserUseCase.call(UpdateMeModel(username: testUsername))).thenAnswer((_) async => Right(true));
+      when(mockUpdateUserUseCase.call(const UpdateMeModel(username: testUsername))).thenAnswer((_) async => const Right(true));
 
       expect(viewModel.userProfileState, isA<InitialState>());
 
@@ -105,7 +105,7 @@ void main() {
     test('should go to ErrorState on update failure', () async {
       viewModel.username = testUsername;
       final failure = UsernameRequiredFailure();
-      when(mockUpdateUserUseCase.call(UpdateMeModel(username: testUsername))).thenAnswer((_) async => Left(failure));
+      when(mockUpdateUserUseCase.call(const UpdateMeModel(username: testUsername))).thenAnswer((_) async => Left(failure));
 
       final future = viewModel.updateName();
       expect(viewModel.userProfileState, isA<LoadingState<Failure, bool>>());
@@ -157,7 +157,7 @@ void main() {
 
   group('deleteAccount', () {
     test('should go InitialState → LoadingState → SuccessState and clear data on success', () async {
-      when(mockDeleteAccountUseCase.call(userId)).thenAnswer((_) async => Right(true));
+      when(mockDeleteAccountUseCase.call(userId)).thenAnswer((_) async => const Right(true));
 
       expect(viewModel.exitableState, isA<InitialState>());
 

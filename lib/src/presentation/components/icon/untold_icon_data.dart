@@ -18,6 +18,17 @@ abstract final class UntoldIcons {
   static final close = UntoldIconData('assets/icons/close.svg');
   static final shield = UntoldIconData('assets/icons/shield.svg');
   static final trash = UntoldIconData('assets/icons/trash.svg');
+  static final backwards = UntoldIconData('assets/icons/backwards.svg');
+  static final comments = UntoldIconData('assets/icons/comments.svg');
+  static final edit = UntoldIconData('assets/icons/edit.svg');
+  static final flag = UntoldIconData('assets/icons/flag.svg');
+  static final forward = UntoldIconData('assets/icons/forward.svg');
+  static final backward = UntoldIconData('assets/icons/backward.svg');
+  static final pause = UntoldIconData('assets/icons/pause.svg');
+  static final send = UntoldIconData('assets/icons/send.svg');
+  static final subtitles = UntoldIconData('assets/icons/subtitles.svg');
+  static final fullscreen = UntoldIconData('assets/icons/fullscreen.svg');
+  static final arrow_down = UntoldIconData('assets/icons/arrow_down.svg');
 }
 
 class UntoldIconData {

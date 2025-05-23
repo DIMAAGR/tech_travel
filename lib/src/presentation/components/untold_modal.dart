@@ -9,6 +9,7 @@ class UntoldModal extends StatelessWidget {
   final MainAxisAlignment? mainAxisAlignment;
   final MainAxisSize? mainAxisSize;
   final EdgeInsets? padding;
+  final double? backSize;
   final TextStyle? titleStyle;
   const UntoldModal({
     super.key,
@@ -19,6 +20,7 @@ class UntoldModal extends StatelessWidget {
     this.padding,
     this.mainAxisSize,
     this.titleStyle,
+    this.backSize,
   });
 
   @override
@@ -33,9 +35,11 @@ class UntoldModal extends StatelessWidget {
           Stack(
             alignment: Alignment.center,
             children: [
-              const Align(
+              Align(
                 alignment: Alignment.centerLeft,
-                child: UntoldBackButton(),
+                child: UntoldBackButton(
+                  size: backSize,
+                ),
               ),
               if (title != null)
                 Text(

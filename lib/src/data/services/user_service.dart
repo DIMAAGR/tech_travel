@@ -16,6 +16,10 @@ abstract class UserServiceBase with Store {
   @computed
   String? get uid => _userEntity?.id?.toString() ?? _auth.currentUser?.uid;
   @computed
+  String? get photoURL => _auth.currentUser?.photoURL;
+  @computed
+  String? get fireUid => _auth.currentUser?.uid;
+  @computed
   String? get email => _userEntity?.email ?? _auth.currentUser?.email;
   @computed
   String? get userName => _userEntity?.username ?? _auth.currentUser?.displayName;
