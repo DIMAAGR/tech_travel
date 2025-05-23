@@ -34,13 +34,16 @@ class CommentService {
     required Map<String, dynamic> user,
   }) async {
     try {
-      await _firestore.collection('comments').add({
-        "id": _firestore.collection('comments').doc().id,
+      final docRef = _firestore.collection('comments').doc(); // cria com ID manual
+      final commentData = {
         "comment": comment,
         "date": DateTime.now().toUtc().toIso8601String(),
         "user": user,
-        "movie": movieId,
-      });
+        "movie": int.parse(movieId),
+      };
+
+      await docRef.set(commentData);
+
       return true;
     } catch (e) {
       return false;

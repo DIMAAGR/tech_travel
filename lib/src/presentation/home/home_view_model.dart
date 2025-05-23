@@ -115,15 +115,15 @@ abstract class HomeViewModelBase with Store {
     );
   }
 
-  bool isLiked() {
-    if (allLikesState is SuccessState<Failure, LikesEntity>) {
-      final likes = (allLikesState as SuccessState<Failure, LikesEntity>).success.data;
-      final movie = (movieState as SuccessState<Failure, MovieEntity>).success.data[index];
+  // bool isLiked() {
+  //   if (allLikesState is SuccessState<Failure, LikesEntity>) {
+  //     final likes = (allLikesState as SuccessState<Failure, LikesEntity>).success.data;
+  //     final movie = (movieState as SuccessState<Failure, MovieEntity>).success.data[index];
 
-      return likes.any((element) => element.attributes!.movieId!.data!.id == movie.id && element.attributes!.userId!.data!.id! == int.parse(userService.uid!));
-    }
-    return false;
-  }
+  //     return likes.any((element) => element.attributes!.movieId!.data!.id == movie.id && element.attributes!.userId!.data!.id! == int.parse(userService.uid!));
+  //   }
+  //   return false;
+  // }
 
   @action
   Future<void> getAllLikes() async {

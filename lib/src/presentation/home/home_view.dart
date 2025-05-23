@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
@@ -13,10 +14,12 @@ import 'package:tech_travel/src/presentation/home/widgets/blurred_thumb_backgrou
 import 'package:tech_travel/src/presentation/home/widgets/rating_dialog.dart';
 import 'package:tech_travel/src/presentation/home/widgets/user_button.dart';
 import 'package:tech_travel/src/presentation/home/widgets/video_card.dart';
+import 'package:tech_travel/src/presentation/video_player/video_player_view_model.dart';
 
 class HomeView extends StatefulWidget {
   final HomeViewModel viewModel;
-  const HomeView({super.key, required this.viewModel});
+  final VideoPlayerViewModel viedeoViewModel;
+  const HomeView({super.key, required this.viewModel, required this.viedeoViewModel});
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -89,7 +92,7 @@ class _HomeViewState extends State<HomeView> {
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: Text(
-                          'Now Showing',
+                          'nowShowing'.tr(),
                           style: AppTextStyle.h2,
                         ),
                       ),
@@ -107,7 +110,7 @@ class _HomeViewState extends State<HomeView> {
                             commentsEntity:
                                 isCommentSuccess ? (widget.viewModel.commentState as SuccessState<Failure, List<CommentsEntity>>).success.first : null,
                             entity: isSuccess ? (widget.viewModel.movieState as SuccessState<Failure, MovieEntity>).success.data[index] : null,
-                            isLiked: widget.viewModel.isLiked(),
+                            isLiked: false,
                             onLikePressed: (like) async {
                               if (like == LikeType.liked) {
                                 await widget.viewModel.addLike();
@@ -117,7 +120,10 @@ class _HomeViewState extends State<HomeView> {
                               }
                             },
                             onWatchPressed: () {
-                              widget.viewModel.getAllComments();
+                              widget.viedeoViewModel.movieEntity = (widget.viewModel.movieState as SuccessState<Failure, MovieEntity>).success.data[index];
+                              widget.viedeoViewModel.getAllComments();
+                              widget.viedeoViewModel.getSubtitles();
+                              Navigator.of(context).pushNamed(AppRoutes.video);
                             },
                           );
                         },

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tech_travel/src/core/theme/app_colors.dart';
 import 'package:tech_travel/src/presentation/components/icon/untold_icon.dart';
@@ -38,17 +39,17 @@ class RatingBalloon extends StatelessWidget {
         children: [
           IconButtonWithSubtitle(
             icon: likeType == LikeType.unliked ? UntoldIcons.dislike_enabled : UntoldIcons.dislike_disabled,
-            subtitle: "It's not for me",
+            subtitle: "notForMe".tr(),
             onPressed: () => onPressed(likeType == LikeType.none ? LikeType.unliked : LikeType.none),
           ),
           IconButtonWithSubtitle(
             icon: likeType == LikeType.liked ? UntoldIcons.like_enabled : UntoldIcons.like_disabled,
-            subtitle: "I Like it",
+            subtitle: "iLikeIt".tr(),
             onPressed: () => onPressed(likeType == LikeType.none ? LikeType.liked : LikeType.none),
           ),
           IconButtonWithSubtitle(
             icon: likeType == LikeType.loved ? UntoldIcons.love_enabled : UntoldIcons.love_disabled,
-            subtitle: "I love it!",
+            subtitle: "iLoveIt".tr(),
             onPressed: () => onPressed(likeType == LikeType.none ? LikeType.loved : LikeType.none),
           ),
           UntoldIcon(

@@ -8,4 +8,5 @@ abstract class AppRoutes {
   static const String profile = '/profile';
   static const String editProfile = '/profile/edit';
   static const String changePassword = '/profile/change-password';
+  static const String video = '/video';
 }

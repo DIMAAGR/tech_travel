@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shimmer/shimmer.dart';
@@ -68,7 +69,7 @@ class VideoCardContent extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      'Comments ${totalComments.toThousands()}',
+                      '${'comments'.tr()} ${totalComments.toThousands()}',
                       style: AppTextStyle.caption2,
                     ),
                     const SizedBox(height: 4),
@@ -96,7 +97,7 @@ class VideoCardContent extends StatelessWidget {
                     const SizedBox(height: 32),
                     Center(
                       child: UntoldButton(
-                        title: 'Watch',
+                        title: 'watch'.tr(),
                         onPressed: onWatchPressed,
                         horizontalPadding: 56,
                         isTransparent: true,
@@ -115,13 +116,13 @@ class VideoCardContent extends StatelessWidget {
                     Row(
                       children: [
                         IconButtonWithSubtitle(
-                          subtitle: 'Rate',
+                          subtitle: 'rate'.tr(),
                           onPressed: onLikePressed,
                           icon: UntoldIcons.like_disabled,
                         ),
                         const SizedBox(width: 16),
                         IconButtonWithSubtitle(
-                          subtitle: 'Gift to someone?',
+                          subtitle: 'giftToSomeone'.tr(),
                           onPressed: onSharePressed,
                           icon: UntoldIcons.share,
                         ),
@@ -130,7 +131,7 @@ class VideoCardContent extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        const Text('Available until', style: AppTextStyle.labelSmall3),
+                        Text('availableUntil'.tr(), style: AppTextStyle.labelSmall3),
                         const SizedBox(height: 4),
                         Text(movieEntity!.attributes!.publishedAt!.toShortFormatted(), style: AppTextStyle.labelMedium),
                       ],

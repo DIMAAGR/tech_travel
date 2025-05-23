@@ -15,6 +15,20 @@ mixin _$UserService on UserServiceBase, Store {
   String? get uid => (_$uidComputed ??=
           Computed<String?>(() => super.uid, name: 'UserServiceBase.uid'))
       .value;
+  Computed<String?>? _$photoURLComputed;
+
+  @override
+  String? get photoURL =>
+      (_$photoURLComputed ??= Computed<String?>(() => super.photoURL,
+              name: 'UserServiceBase.photoURL'))
+          .value;
+  Computed<String?>? _$fireUidComputed;
+
+  @override
+  String? get fireUid =>
+      (_$fireUidComputed ??= Computed<String?>(() => super.fireUid,
+              name: 'UserServiceBase.fireUid'))
+          .value;
   Computed<String?>? _$emailComputed;
 
   @override
@@ -88,6 +102,8 @@ mixin _$UserService on UserServiceBase, Store {
   String toString() {
     return '''
 uid: ${uid},
+photoURL: ${photoURL},
+fireUid: ${fireUid},
 email: ${email},
 userName: ${userName},
 isLoggedIn: ${isLoggedIn},

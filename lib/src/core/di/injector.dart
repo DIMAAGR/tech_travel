@@ -14,6 +14,7 @@ import 'package:tech_travel/src/data/repositories/forgot_password_repository_imp
 import 'package:tech_travel/src/data/repositories/get_movie_repository_impl.dart';
 import 'package:tech_travel/src/data/repositories/likes_repository_impl.dart';
 import 'package:tech_travel/src/data/repositories/signup_repository_impl.dart';
+import 'package:tech_travel/src/data/repositories/subtitles_repository_impl.dart';
 import 'package:tech_travel/src/data/repositories/user_repository_impl.dart';
 import 'package:tech_travel/src/data/services/user_service.dart';
 import 'package:tech_travel/src/domain/repositories/comments_repository.dart';
@@ -23,11 +24,13 @@ import 'package:tech_travel/src/domain/repositories/likes_repository.dart';
 import 'package:tech_travel/src/domain/repositories/login_repository.dart';
 import 'package:tech_travel/src/data/repositories/login_repository_impl.dart';
 import 'package:tech_travel/src/domain/repositories/signup_repository.dart';
+import 'package:tech_travel/src/domain/repositories/subtitles_repository.dart';
 import 'package:tech_travel/src/domain/repositories/user_repository.dart';
 import 'package:tech_travel/src/domain/usecases/comments_use_case.dart';
 import 'package:tech_travel/src/domain/usecases/forgot_password_use_case.dart';
 import 'package:tech_travel/src/domain/usecases/get_movie_use_case.dart';
 import 'package:tech_travel/src/domain/usecases/likes_use_case.dart';
+import 'package:tech_travel/src/domain/usecases/subtitles_use_case.dart';
 import 'package:tech_travel/src/domain/usecases/user_use_case.dart';
 import 'package:tech_travel/src/domain/usecases/sign_in_use_case.dart';
 import 'package:tech_travel/src/domain/usecases/sign_up_use_case.dart';
@@ -38,6 +41,7 @@ import 'package:tech_travel/src/presentation/login/login_view_model.dart';
 import 'package:tech_travel/src/presentation/onboarding/onboarding_view_model.dart';
 import 'package:tech_travel/src/presentation/signup/sign_up_view_model.dart';
 import 'package:tech_travel/src/presentation/user_profile/user_profile_view_model.dart';
+import 'package:tech_travel/src/presentation/video_player/video_player_view_model.dart';
 
 final getIt = GetIt.instance;
 
@@ -100,6 +104,11 @@ void setupInjector() {
   );
   getIt.registerLazySingleton<LikesRepository>(
     () => LikesRepositoryImpl(
+      getIt<ApiClient>(),
+    ),
+  );
+  getIt.registerLazySingleton<SubtitlesRepository>(
+    () => SubtitlesRepositoryImpl(
       getIt<ApiClient>(),
     ),
   );
@@ -185,6 +194,19 @@ void setupInjector() {
     ),
   );
 
+  // ===================================================
+  // Video View
+  // ===================================================
+
+  getIt.registerLazySingleton<VideoPlayerViewModel>(
+    () => VideoPlayerViewModel(
+      getAllCommentsUseCase: getIt<GetAllCommentsUseCase>(),
+      addCommentUseCase: getIt<AddCommentUseCase>(),
+      userService: getIt<UserService>(),
+      getSubtitlesUseCase: getIt<SubtitlesUseCase>(),
+    ),
+  );
+
   ///
   ///
   /// UseCases
@@ -207,4 +229,5 @@ void setupInjector() {
   getIt.registerFactory(() => GetAllLikesUseCase(getIt()));
   getIt.registerFactory(() => GetLastCommentUseCase(getIt()));
   getIt.registerFactory(() => AddCommentUseCase(getIt()));
+  getIt.registerFactory(() => SubtitlesUseCase(getIt()));
 }
